@@ -18,7 +18,16 @@ const personSchema = new Schema({
 Person = model("Person", personSchema);
 
 const createAndSavePerson = (done) => {
-  done(null /*, data*/);
+  const person = new Person({
+    name: "John",
+    age: 20,
+    favoriteFoods: ["Pizza", "Hamburger"],
+  });
+
+  person.save((err, data) => {
+    if (err) return console.log(err);
+    done(null, data);
+  });
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
